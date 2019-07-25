@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Style/EvenOdd, Style/NumericPredicate, Style/ClassAndModuleChildren
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class AboutOpenClasses < Neo::Koan
@@ -30,9 +31,9 @@ class AboutOpenClasses < Neo::Koan
   end
 
   # ------------------------------------------------------------------
-  class Integer
+  class::Integer
     def even?
-      even?
+      (self % 2) == 0
     end
   end
 
@@ -44,3 +45,4 @@ class AboutOpenClasses < Neo::Koan
   # NOTE: To understand why we need the :: before Integer, you need to
   # become enlightened about scope.
 end
+# rubocop:enable Style/EvenOdd, Style/NumericPredicate, Style/ClassAndModuleChildren

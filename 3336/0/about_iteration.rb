@@ -1,5 +1,7 @@
 # frozen_string_literal:true
 
+# rubocop:disable Style/EvenOdd, Style/NumericPredicate
+
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class AboutIteration < Neo::Koan
@@ -67,14 +69,15 @@ class AboutIteration < Neo::Koan
     assert_equal [11, 12, 13], another_array
   end
 
+  # :reek:TooManyStatements
   def test_select_selects_certain_items_from_an_array
     array = [1, 2, 3, 4, 5, 6]
 
-    even_numbers = array.select(&:even?)
+    even_numbers = array.select { |item| (item % 2) == 0 }
     assert_equal [2, 4, 6], even_numbers
 
     # NOTE: 'find_all' is another name for the 'select' operation
-    more_even_numbers = array.find_all(&:even?)
+    more_even_numbers = array.find_all { |item| (item % 2) == 0 }
     assert_equal [2, 4, 6], more_even_numbers
   end
 
@@ -126,3 +129,4 @@ class AboutIteration < Neo::Koan
   #
   # When you get to the "AboutSandwichCode" koan, recheck your answer.
 end
+# rubocop:enable Style/EvenOdd, Style/NumericPredicate

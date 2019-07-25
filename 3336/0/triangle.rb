@@ -1,4 +1,5 @@
-# rubocop:disable all
+# rubocop:disable Metrics/LineLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:disable Metrics/AbcSize
 # frozen_string_literal:true
 
 # Triangle Project Code.
@@ -34,4 +35,5 @@ end
 # Error class used in part 2.  No need to change this code.
 class TriangleError < StandardError
 end
-# rubocop:enable all
+# rubocop:enable Metrics/LineLength, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/AbcSize

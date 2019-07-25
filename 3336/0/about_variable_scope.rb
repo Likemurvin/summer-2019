@@ -1,6 +1,6 @@
 # rubocop: disable Style/ClassVars, Style/TrivialAccessors, Style/GlobalVars
 # rubocop: disable Lint/UselessAssignment, Style/ClassMethods, Style/UnneededInterpolation
-# rubocop: disable Naming/UncommunicativeMethodParamName
+# rubocop: disable Naming/UncommunicativeMethodParamName, Style/EachForSimpleLoop
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class AboutVariableScope < Neo::Koan
@@ -28,7 +28,7 @@ class AboutVariableScope < Neo::Koan
 
   def test_blocks_can_access_variables_outside_scope
     test = 'Hi'
-    2.times do
+    (1..2).each do
       test = 'Hey'
     end
 
@@ -37,7 +37,7 @@ class AboutVariableScope < Neo::Koan
 
   # :reek:UncommunicativeVariableName
   def test_block_variables_cannot_be_accessed_outside_scope
-    2.times do
+    (1..2).each do
       x = 0
     end
     assert_equal nil, defined? x
@@ -104,7 +104,7 @@ class AboutVariableScope < Neo::Koan
   # :reek:UncommunicativeMethodName
   def test_global_variables_can_be_changed_from_any_scope_2
     # From within a block
-    2.times do
+    (1..2).each do
       $anywhere = 'Hey'
     end
 
@@ -117,4 +117,4 @@ end
 # AboutVariableScope class?
 # rubocop: enable Style/ClassVars, Style/TrivialAccessors, Style/GlobalVars
 # rubocop: enable Lint/UselessAssignment, Style/ClassMethods, Style/UnneededInterpolation
-# rubocop: enable Naming/UncommunicativeMethodParamName
+# rubocop: enable Naming/UncommunicativeMethodParamName, Style/EachForSimpleLoop

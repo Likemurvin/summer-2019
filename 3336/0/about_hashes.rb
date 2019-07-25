@@ -1,4 +1,5 @@
 # rubocop:disable Metrics/AbcSize, Style/EmptyLiteral, Lint/ShadowingOuterLocalVariable
+# rubocop:disable Style/HashSyntax
 # frozen_string_literal:true
 
 require File.expand_path(File.dirname(__FILE__) + '/neo')
@@ -12,7 +13,7 @@ class AboutHashes < Neo::Koan
   end
 
   def test_hash_literals
-    hash = { one: 'uno', two: 'dos' }
+    hash = { :one => 'uno', :two => 'dos' }
     assert_equal 2, hash.size
   end
 
@@ -127,3 +128,4 @@ class AboutHashes < Neo::Koan
   end
 end
 # rubocop:enable Metrics/AbcSize, Style/EmptyLiteral, Lint/ShadowingOuterLocalVariable
+# # rubocop:enable Style/HashSyntax

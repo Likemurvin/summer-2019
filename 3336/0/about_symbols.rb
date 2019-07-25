@@ -44,7 +44,7 @@ class AboutSymbols < Neo::Koan
     def test_constants_become_symbols
       all_symbols_as_strings = Symbol.all_symbols.map(&:to_s)
 
-      assert_equal false, all_symbols_as_strings.include?(__)
+      assert_equal true, all_symbols_as_strings.include?('test_constants_become_symbols')
     end
   end
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# rubocop:disable Lint/UnneededCopDisableDirective, Style/MethodMissing
+# rubocop:disable Lint/UnneededCopDisableDirective
+# rubocop:disable Lint/UnneededCopEnableDirective, Style/MethodMissing, Lint/UnusedMethodArgument
 # rubocop:disable Style/SingleLineMethods, Style/MissingRespondToMissing, Style/MethodMissingSuper
 
 require File.expand_path(File.dirname(__FILE__) + '/neo')
@@ -50,7 +51,7 @@ class AboutMessagePassing < Neo::Koan
     assert_equal false, mc.respond_to?(:does_not_exist)
   end
 
-  # ----------------------------------------------------------------tfalsee
+  # ----------------------------------------------------------------
   class MessageCatcher
     def add_a_payload(*args)
       args
@@ -116,7 +117,7 @@ class AboutMessagePassing < Neo::Koan
   # ------------------------------------------------------------------
   # :reek:UtilityFunction
   class AllMessageCatcher
-    def method_missing(method_name, *args)
+    def method_missing(method_name, *args, &block)
       "Someone called #{method_name} with <#{args.join(', ')}>"
     end
   end
@@ -126,7 +127,7 @@ class AboutMessagePassing < Neo::Koan
 
     assert_equal 'Someone called foobar with <>', catcher.foobar
     assert_equal 'Someone called foobaz with <1>', catcher.foobaz(1)
-    assert_equal 'Someone called sum with <1, 2, 3>', catcher.sum(1, 2, 3)
+    assert_equal 'Someone called sum with <1, 2, 3, 4, 5, 6>', catcher.sum(1, 2, 3, 4, 5, 6)
   end
 
   # :reek:ManualDispatch
@@ -188,4 +189,5 @@ class AboutMessagePassing < Neo::Koan
 end
 
 # rubocop:enable Style/SingleLineMethods, Style/MissingRespondToMissing, Style/MethodMissingSuper
-# rubocop:enable Lint/UnneededCopDisableDirective, Style/MethodMissing
+# rubocop:enable Lint/UnneededCopEnableDirective, Style/MethodMissing
+# rubocop:enable Lint/UnusedMethodArgument, Lint/UnneededCopDisableDirective

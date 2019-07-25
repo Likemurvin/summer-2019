@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 # rubocop:disable Style/CharacterLiteral, Style/StringLiterals, Naming/HeredocDelimiterNaming
 # rubocop:disable Metrics/ClassLength, Lint/InterpolationCheck, Lint/UselessAssignment
+# rubocop:disable Style/PercentLiteralDelimiters
 # :reek:TooManyMethods
 class AboutStrings < Neo::Koan
   def test_double_quoted_strings_are_strings
@@ -34,17 +35,17 @@ class AboutStrings < Neo::Koan
   # :reek:UncommunicativeVariableName
   def test_use_flexible_quoting_to_handle_really_hard_cases
     a = %(flexible quotes can handle both ' and " characters)
-    b = %(flexible quotes can handle both ' and " characters)
-    c = %(flexible quotes can handle both ' and " characters)
+    b = %!flexible quotes can handle both ' and " characters!
+    c = %{flexible quotes can handle both ' and " characters}
     assert_equal true, a == b
     assert_equal true, a == c
   end
 
   def test_flexible_quotes_can_handle_multiple_lines
-    long_string = %(
+    long_string = %{
 It was the best of times,
 It was the worst of times.
-)
+}
     assert_equal 54, long_string.length
     assert_equal 3, long_string.lines.count
     assert_equal "\n", long_string[0, 1]
@@ -203,3 +204,4 @@ It was the worst of times.
 end
 # rubocop:enable Style/CharacterLiteral, Style/StringLiterals, Naming/HeredocDelimiterNaming
 # rubocop:enable Metrics/ClassLength, Lint/InterpolationCheck, Lint/UselessAssignment
+# rubocop:enable Style/PercentLiteralDelimiters

@@ -1,5 +1,8 @@
 # frozen_string_literal:true
 
+# rubocop:disable Lint/UnneededCopDisableDirective, Naming/RescuedExceptionsVariableName
+# rubocop:disable Lint/UselessAssignment, Lint/RescueException, Metrics/LineLength
+
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class AboutNil < Neo::Koan
@@ -12,14 +15,15 @@ class AboutNil < Neo::Koan
     # What happens when you call a method that doesn't exist.  The
     # following begin/rescue/end code block captures the exception and
     # makes some assertions about it.
-    nil.some_method_nil_doesnt_know_about
-  rescue StandardError => e
-    # What exception has been caught?
-    assert_equal NoMethodError, e.class
-
+    begin
+      nil.some_method_nil_doesnt_know_about
+    rescue Exception => ex
+      # What exception has been caught?
+      assert_equal NoMethodError, ex.class
+    end
     # What message was attached to the exception?
     # (HINT: replace __ with part of the error message.)
-    assert_match(/undefined method `some_method_nil_doesnt_know_about' for nil:NilClass/, e.message)
+    assert_match(/undefined method `some_method_nil_doesnt_know_about' for nil:NilClass/, ex.message)
   end
 
   # :reek:NilCheck
@@ -37,3 +41,6 @@ class AboutNil < Neo::Koan
     # Why?
   end
 end
+# rubocop:enable Lint/UselessAssignment, Naming/RescuedExceptionsVariableName
+# rubocop:enable Lint/RescueException, Metrics/LineLength
+# rubocop:enable Lint/UnneededCopDisableDirective
